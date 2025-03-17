@@ -16,7 +16,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 // third-party
-import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 // project imports
 import NavItem from './NavItem';
@@ -90,6 +90,7 @@ export default function NavGroup({
 }: Props) {
   const { pathname } = useLocation();
   const { menuOrientation } = useConfig();
+  const { formatMessage } = useIntl();
 
   const { menuMaster } = useGetMenuMaster();
   const drawerOpen = menuMaster.isDashboardDrawerOpened;
@@ -266,11 +267,11 @@ export default function NavGroup({
                 drawerOpen && (
                   <Box sx={{ pl: 3, mb: 1.5 }}>
                     <Typography variant="subtitle2" color="text.secondary">
-                      <FormattedMessage id={item.title as string} />
+                      {formatMessage({ id: item.title as string })}
                     </Typography>
                     {item.caption && (
                       <Typography variant="caption" color="secondary">
-                        <FormattedMessage id={item.caption as string} />
+                        {formatMessage({ id: item.caption as string })}
                       </Typography>
                     )}
                   </Box>
@@ -304,7 +305,7 @@ export default function NavGroup({
               sx={{ mr: 1 }}
               primary={
                 <Typography variant="body1" color={isSelected || anchorEl ? 'primary.main' : 'secondary.dark'}>
-                  <FormattedMessage id={currentItem.id === lastItemId ? 'more-items' : (currentItem.title as string)} />
+                  {formatMessage({ id: currentItem.id === lastItemId ? 'more-items' : (currentItem.title as string) })}
                 </Typography>
               }
             />

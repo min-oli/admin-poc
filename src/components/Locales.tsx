@@ -17,8 +17,10 @@ const loadLocaleData = (locale: I18n) => {
     case 'zh':
       return import('utils/locales/zh.json');
     case 'en':
-    default:
       return import('utils/locales/en.json');
+    case 'ko':
+    default:
+      return import('utils/locales/ko.json');
   }
 };
 
@@ -39,12 +41,14 @@ export default function Locales({ children }: Props) {
     });
   }, [i18n]);
 
+  const IntlProviderWrapper = IntlProvider as unknown as React.FC<any>;
+
   return (
     <>
       {messages && (
-        <IntlProvider locale={i18n} defaultLocale="en" messages={messages}>
+        <IntlProviderWrapper locale={i18n} defaultLocale="ko" messages={messages}>
           {children}
-        </IntlProvider>
+        </IntlProviderWrapper>
       )}
     </>
   );

@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import MuiBreadcrumbs, { BreadcrumbsProps } from '@mui/material/Breadcrumbs';
 
 // third-party
-import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 // project imports
 import MainCard from 'components/MainCard';
@@ -67,6 +67,7 @@ export default function Breadcrumbs({
 }: Props) {
   const theme = useTheme();
   const location = useLocation();
+  const { formatMessage } = useIntl();
 
   const [main, setMain] = useState<NavItemType | undefined>();
   const [item, setItem] = useState<NavItemType>();
@@ -143,7 +144,7 @@ export default function Breadcrumbs({
         color={window.location.pathname === main.url ? 'text.primary' : 'text.secondary'}
       >
         {icons && <CollapseIcon style={iconSX} />}
-        <FormattedMessage id={main?.title as string} />
+        {formatMessage({ id: main?.title as string })}
       </Typography>
     );
 
@@ -168,16 +169,14 @@ export default function Breadcrumbs({
                 <Typography component={Link} to="/" color="text.secondary" variant="h6" sx={{ textDecoration: 'none' }}>
                   {icons && <HomeOutlined style={iconSX} />}
                   {icon && !icons && <HomeFilled style={{ ...iconSX, marginRight: 0 }} />}
-                  {(!icon || icons) && <FormattedMessage id="home" />}
+                  {(!icon || icons) && formatMessage({ id: 'home' })}
                 </Typography>
                 {mainContent}
               </MuiBreadcrumbs>
             </Grid>
             {title && titleBottom && (
               <Grid sx={{ mt: card === false ? 0.25 : 1 }}>
-                <Typography variant="h2">
-                  <FormattedMessage id={main.title as string} />
-                </Typography>
+                <Typography variant="h2">{formatMessage({ id: main.title as string })}</Typography>
               </Grid>
             )}
           </Grid>
@@ -195,7 +194,7 @@ export default function Breadcrumbs({
     itemContent = (
       <Typography variant="subtitle1" color="text.primary">
         {icons && <ItemIcon style={iconSX} />}
-        <FormattedMessage id={itemTitle as string} />
+        {formatMessage({ id: itemTitle as string })}
       </Typography>
     );
 
@@ -204,7 +203,7 @@ export default function Breadcrumbs({
         <Typography component={Link} to="/" color="text.secondary" variant="h6" sx={{ textDecoration: 'none' }}>
           {icons && <HomeOutlined style={iconSX} />}
           {icon && !icons && <HomeFilled style={{ ...iconSX, marginRight: 0 }} />}
-          {(!icon || icons) && <FormattedMessage id="home" />}
+          {(!icon || icons) && formatMessage({ id: 'home' })}
         </Typography>
         {mainContent}
         {itemContent}
@@ -226,7 +225,7 @@ export default function Breadcrumbs({
                 color={!link.to ? 'text.primary' : 'text.secondary'}
               >
                 {link.icon && <CollapseIcon style={iconSX} />}
-                <FormattedMessage id={link.title as string} />
+                {formatMessage({ id: link.title as string })}
               </Typography>
             );
           })}
@@ -253,17 +252,13 @@ export default function Breadcrumbs({
           >
             {title && !titleBottom && (
               <Grid>
-                <Typography variant="h2">
-                  <FormattedMessage id={custom ? heading : (item?.title as string)} />
-                </Typography>
+                <Typography variant="h2">{formatMessage({ id: custom ? heading : (item?.title as string) })}</Typography>
               </Grid>
             )}
             <Grid>{tempContent}</Grid>
             {title && titleBottom && (
               <Grid sx={{ mt: card === false ? 0.25 : 1 }}>
-                <Typography variant="h2">
-                  <FormattedMessage id={custom ? heading : (item?.title as string)} />
-                </Typography>
+                <Typography variant="h2">{formatMessage({ id: custom ? heading : (item?.title as string) })}</Typography>
               </Grid>
             )}
           </Grid>

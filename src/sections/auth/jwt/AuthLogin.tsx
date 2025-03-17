@@ -34,7 +34,7 @@ import EyeInvisibleOutlined from '@ant-design/icons/EyeInvisibleOutlined';
 // ============================|| JWT - LOGIN ||============================ //
 
 export default function AuthLogin({ isDemo = false }: { isDemo?: boolean }) {
-  const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = React.useState(true);
 
   const { login } = useAuth();
 

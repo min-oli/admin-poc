@@ -15,7 +15,7 @@ import Dot from 'components/@extended/Dot';
 import IconButton from 'components/@extended/IconButton';
 
 // third-party
-import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import { MenuOrientation, ThemeMode, NavActionType } from 'config';
 import useConfig from 'hooks/useConfig';
@@ -36,7 +36,7 @@ interface Props {
 export default function NavItem({ item, level, isParents = false, setSelectedID }: Props) {
   const { menuMaster } = useGetMenuMaster();
   const drawerOpen = menuMaster.isDashboardDrawerOpened;
-
+  const { formatMessage } = useIntl();
   const downLG = useMediaQuery((theme) => theme.breakpoints.down('lg'));
 
   const { mode, menuOrientation } = useConfig();
@@ -131,7 +131,7 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
               <ListItemText
                 primary={
                   <Typography variant="h6" sx={{ color: isSelected ? iconSelectedColor : textColor }}>
-                    <FormattedMessage id={item.title as string} />
+                    {formatMessage({ id: item.title as string })}
                   </Typography>
                 }
               />
@@ -237,7 +237,7 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
           <ListItemText
             primary={
               <Typography variant="h6" color={isSelected ? 'primary.main' : 'secondary.dark'}>
-                <FormattedMessage id={item.title as string} />
+                {formatMessage({ id: item.title as string })}
               </Typography>
             }
           />

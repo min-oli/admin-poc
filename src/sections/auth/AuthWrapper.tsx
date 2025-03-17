@@ -6,19 +6,16 @@ import Grid from '@mui/material/Grid2';
 import Alert from '@mui/material/Alert';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 
 // project imports
 import AuthFooter from 'components/cards/AuthFooter';
 import Logo from 'components/logo';
 import AuthCard from './AuthCard';
-import LoginProvider from './LoginProvider';
 
 import useAuth from 'hooks/useAuth';
 
 // assets
-import AuthBackground from './AuthBackground';
 import ExclamationCircleOutlined from '@ant-design/icons/ExclamationCircleOutlined';
 
 interface Props {
@@ -52,7 +49,6 @@ export default function AuthWrapper({ children }: Props) {
 
   return (
     <Box sx={{ minHeight: '100vh' }}>
-      <AuthBackground />
       <Grid container direction="column" justifyContent="flex-end" sx={{ minHeight: '100vh' }}>
         <Grid sx={{ px: 3, mt: 3 }} size={12}>
           <Logo to="/" />
@@ -80,18 +76,6 @@ export default function AuthWrapper({ children }: Props) {
                 </Box>
               )}
               <AuthCard>{children}</AuthCard>
-              {!isLoggedIn && (
-                <Box sx={{ maxWidth: { xs: 400, sm: 475 }, margin: { xs: 2.5, md: 3 }, '& > *': { flexGrow: 1, flexBasis: '50%' } }}>
-                  <Grid size={12}>
-                    <Divider sx={{ mb: 3 }}>
-                      <Typography variant="caption"> Check other login views </Typography>
-                    </Divider>
-                  </Grid>
-                  <Grid size={12}>
-                    <LoginProvider currentLoginWith={authParam} />
-                  </Grid>
-                </Box>
-              )}
             </Grid>
           </Grid>
         </Grid>

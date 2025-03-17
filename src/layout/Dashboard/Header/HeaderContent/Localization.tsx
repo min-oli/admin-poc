@@ -91,6 +91,18 @@ export default function Localization() {
                     borderRadius: 0.5
                   }}
                 >
+                  <ListItemButton selected={i18n === 'ko'} onClick={() => handleListItemClick('ko')}>
+                    <ListItemText
+                      primary={
+                        <Grid container>
+                          <Typography color="text.primary">한국인</Typography>
+                          <Typography variant="caption" color="text.secondary" sx={{ ml: '8px' }}>
+                            (Korean)
+                          </Typography>
+                        </Grid>
+                      }
+                    />
+                  </ListItemButton>
                   <ListItemButton selected={i18n === 'en'} onClick={() => handleListItemClick('en')}>
                     <ListItemText
                       primary={

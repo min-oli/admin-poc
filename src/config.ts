@@ -61,7 +61,7 @@ export const APP_AUTH: AuthProvider = AuthProvider.JWT;
 
 const config: DefaultConfigProps = {
   fontFamily: `'Public Sans', sans-serif`,
-  i18n: 'en',
+  i18n: 'ko',
   menuOrientation: MenuOrientation.VERTICAL,
   miniDrawer: false,
   container: true,
