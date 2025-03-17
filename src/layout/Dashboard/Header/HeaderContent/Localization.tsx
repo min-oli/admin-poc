@@ -27,14 +27,14 @@ import { I18n } from 'types/config';
 // ==============================|| HEADER CONTENT - LOCALIZATION ||============================== //
 
 export default function Localization() {
-  const downMD = useMediaQuery((theme) => theme.breakpoints.down('md'));
+  const downMD = useMediaQuery(theme => theme.breakpoints.down('md'));
 
   const { i18n, onChangeLocalization } = useConfig();
 
   const anchorRef = useRef<any>(null);
   const [open, setOpen] = useState(false);
   const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+    setOpen(prevOpen => !prevOpen);
   };
 
   const handleClose = (event: MouseEvent | TouchEvent) => {
@@ -54,7 +54,7 @@ export default function Localization() {
       <IconButton
         color="secondary"
         variant="light"
-        sx={(theme) => ({
+        sx={theme => ({
           color: 'text.primary',
           bgcolor: open ? 'grey.100' : 'transparent',
           ...theme.applyStyles('dark', { bgcolor: open ? 'background.default' : 'transparent' })
@@ -78,7 +78,7 @@ export default function Localization() {
       >
         {({ TransitionProps }) => (
           <Transitions type="grow" position={downMD ? 'top-right' : 'top'} in={open} {...TransitionProps}>
-            <Paper sx={(theme) => ({ boxShadow: theme.customShadows.z1 })}>
+            <Paper sx={theme => ({ boxShadow: theme.customShadows.z1 })}>
               <ClickAwayListener onClickAway={handleClose}>
                 <List
                   component="nav"
@@ -95,7 +95,7 @@ export default function Localization() {
                     <ListItemText
                       primary={
                         <Grid container>
-                          <Typography color="text.primary">한국인</Typography>
+                          <Typography color="text.primary">한국어</Typography>
                           <Typography variant="caption" color="text.secondary" sx={{ ml: '8px' }}>
                             (Korean)
                           </Typography>
