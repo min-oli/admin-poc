@@ -83,7 +83,6 @@ export default function AuthForgotPassword() {
             <Grid container spacing={3}>
               <Grid size={12}>
                 <Stack sx={{ gap: 1 }}>
-                  <InputLabel htmlFor="email-forgot">Email Address</InputLabel>
                   <OutlinedInput
                     fullWidth
                     error={Boolean(touched.email && errors.email)}
@@ -93,7 +92,7 @@ export default function AuthForgotPassword() {
                     name="email"
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    placeholder="Enter email address"
+                    placeholder="Enter your ID"
                     inputProps={{}}
                   />
                 </Stack>
@@ -108,13 +107,10 @@ export default function AuthForgotPassword() {
                   <FormHelperText error>{errors.submit}</FormHelperText>
                 </Grid>
               )}
-              <Grid sx={{ mb: -2 }} size={12}>
-                <Typography variant="caption">Do not forgot to check SPAM box.</Typography>
-              </Grid>
               <Grid size={12}>
                 <AnimateButton>
                   <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="primary">
-                    Send Password Reset Email
+                    Send Password Reset
                   </Button>
                 </AnimateButton>
               </Grid>

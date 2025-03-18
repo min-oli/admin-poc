@@ -62,7 +62,7 @@ export default function AuthLogin({ isDemo = false }: { isDemo?: boolean }) {
           email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
           password: Yup.string()
             .required('Password is required')
-            .test('no-leading-trailing-whitespace', 'Password cannot start or end with spaces', (value) => value === value.trim())
+            .test('no-leading-trailing-whitespace', 'Password cannot start or end with spaces', value => value === value.trim())
             .max(10, 'Password must be less than 10 characters')
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
@@ -75,7 +75,15 @@ export default function AuthLogin({ isDemo = false }: { isDemo?: boolean }) {
           } catch (err: any) {
             console.error(err);
             setStatus({ success: false });
-            setErrors({ submit: err.message });
+            // 예시: 에러 메시지나 코드에 따라 분기
+            alert(err.message);
+            if (err.message?.toLowerCase()?.includes('password')) {
+              setErrors({ password: err.message }); // password 필드에 표시!
+            } else if (err.message.includes('email')) {
+              setErrors({ email: err.message });
+            } else {
+              setErrors({ submit: err.message }); // 공통 에러
+            }
             setSubmitting(false);
           }
         }}
@@ -85,7 +93,6 @@ export default function AuthLogin({ isDemo = false }: { isDemo?: boolean }) {
             <Grid container spacing={3}>
               <Grid size={12}>
                 <Stack sx={{ gap: 1 }}>
-                  <InputLabel htmlFor="email-login">Email Address</InputLabel>
                   <OutlinedInput
                     id="email-login"
                     type="email"
@@ -93,7 +100,7 @@ export default function AuthLogin({ isDemo = false }: { isDemo?: boolean }) {
                     name="email"
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    placeholder="Enter email address"
+                    placeholder="Enter your ID"
                     fullWidth
                     error={Boolean(touched.email && errors.email)}
                   />
@@ -106,7 +113,6 @@ export default function AuthLogin({ isDemo = false }: { isDemo?: boolean }) {
               </Grid>
               <Grid size={12}>
                 <Stack sx={{ gap: 1 }}>
-                  <InputLabel htmlFor="password-login">Password</InputLabel>
                   <OutlinedInput
                     fullWidth
                     error={Boolean(touched.password && errors.password)}
@@ -144,7 +150,7 @@ export default function AuthLogin({ isDemo = false }: { isDemo?: boolean }) {
                     control={
                       <Checkbox
                         checked={checked}
-                        onChange={(event) => setChecked(event.target.checked)}
+                        onChange={event => setChecked(event.target.checked)}
                         name="checked"
                         color="primary"
                         size="small"
@@ -156,7 +162,7 @@ export default function AuthLogin({ isDemo = false }: { isDemo?: boolean }) {
                     variant="h6"
                     component={RouterLink}
                     to={isDemo ? '/auth/forgot-password' : auth ? `/${auth}/forgot-password?auth=jwt` : '/forgot-password'}
-                    color="text.primary"
+                    color="primary"
                   >
                     Forgot Password?
                   </Link>
@@ -170,7 +176,7 @@ export default function AuthLogin({ isDemo = false }: { isDemo?: boolean }) {
               <Grid size={12}>
                 <AnimateButton>
                   <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="primary">
-                    Login
+                    Sign in
                   </Button>
                 </AnimateButton>
               </Grid>

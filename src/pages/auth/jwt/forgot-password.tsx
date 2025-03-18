@@ -23,7 +23,9 @@ export default function ForgotPassword() {
       <Grid container spacing={3}>
         <Grid size={12}>
           <Stack direction="row" sx={{ alignItems: 'baseline', justifyContent: 'space-between', mb: { xs: -0.5, sm: 0.5 } }}>
-            <Typography variant="h3">Forgot Password</Typography>
+            <Typography variant="h4" fontWeight={'bold'}>
+              Forgot password?
+            </Typography>
             <Typography
               component={Link}
               to={isLoggedIn ? '/auth/login' : auth ? `/${auth}/login?auth=jwt` : '/login'}

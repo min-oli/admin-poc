@@ -82,7 +82,7 @@ export default function AuthForgotPassword() {
                     name="email"
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    placeholder="Enter email address"
+                    placeholder="Enter your ID"
                     inputProps={{}}
                   />
                 </Stack>

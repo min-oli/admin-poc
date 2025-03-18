@@ -94,7 +94,7 @@ const AuthForgotPassword = () => {
                     name="email"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    placeholder="Enter email address"
+                    placeholder="Enter your ID"
                     inputProps={{}}
                   />
                 </Stack>
